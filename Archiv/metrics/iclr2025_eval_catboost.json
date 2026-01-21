@@ -1,0 +1,16 @@
+{
+  "model": "CatBoost",
+  "eval_year": 2025,
+  "split": "eval",
+  "accuracy": 0.874882247152522,
+  "macro_f1": 0.6380300824528582,
+  "weighted_f1": 0.871151032537041,
+  "f1_oral": 0.2459016393442623,
+  "accuracy_oral": 0.9842425280465873,
+  "f1_poster": 0.7986463620981388,
+  "accuracy_poster": 0.8878992892009934,
+  "f1_reject": 0.9301445068467218,
+  "accuracy_reject": 0.9051982529759356,
+  "f1_spotlight": 0.5774278215223098,
+  "accuracy_spotlight": 0.9724244240815277
+}

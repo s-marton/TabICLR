@@ -1,0 +1,17 @@
+model,class,count,share
+CatBoost,oral,57,0.0029049026602792783
+CatBoost,poster,5381,0.27423300377127713
+CatBoost,reject,13678,0.6970747120578942
+CatBoost,spotlight,506,0.025787381510549382
+Logistic Regression,oral,0,0.0
+Logistic Regression,poster,3209,0.16354092345326673
+Logistic Regression,reject,15875,0.8090408724900622
+Logistic Regression,spotlight,538,0.027418204056671083
+Decision Tree,oral,387,0.01972276016715931
+Decision Tree,poster,5898,0.30058098053205584
+Decision Tree,reject,12369,0.6303638772806034
+Decision Tree,spotlight,968,0.04933238202018143
+TabPFN,oral,144,0.00733870145754765
+TabPFN,poster,3424,0.17449801243502192
+TabPFN,reject,15595,0.7947711752114973
+TabPFN,spotlight,459,0.023392110895933137

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICLR 2026 Acceptance Prediction: Tabular ML Approach</title>
+    <!-- System fonts used (San Francisco) -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links" style="margin-left: 1rem;">
+                <a href="#prediction" class="nav-link">Prediction</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#results" class="nav-link">Experimental Results</a>
+                <a href="#analysis" class="nav-link">Analysis</a>
+                <a href="#download" class="nav-link">Download</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="margin-right: 1rem;">
+                <span id="themeIcon">🌙</span>
+                <span id="themeText">Dark</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>ICLR 2026 Acceptance Prediction: Benchmarking with Tabular Machine Learning</h1>
+            <p class="subtitle" style="font-style: italic; opacity: 0.9;"> Please note: These are just predictions based
+                on
+                data. Don't take them too seriously! We wish everyone
+                the best of luck with their submissions. 🍀</p>
+            <div class="hero-buttons">
+                <a href="#prediction" class="btn btn-primary">Predicted Accept List</a>
+                <a href="https://github.com" class="btn btn-secondary">GitHub Repository</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="prediction" class="section">
+        <div class="container">
+            <h2>ICLR 2026 Prediction Lookup</h2>
+            <p class="section-description">Enter your OpenReview submission ID to check predictions from our tabular ML
+                models.</p>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <select id="modelSelector" class="model-selector">
+                        <option value="catboost">CatBoost</option>
+                        <option value="tabpfn">TabPFN</option>
+                        <option value="logreg">Logistic Reg.</option>
+                        <option value="dtree">Decision Tree</option>
+                    </select>
+                    <input type="text" id="searchInput"
+                        placeholder="Enter OpenReview submission ID (e.g., 00F7BfXLYJ)" />
+                    <button id="searchBtn" class="search-btn">Search</button>
+                </div>
+                <div id="searchStatus" class="search-status">Ready to search...</div>
+            </div>
+
+            <div id="resultsContainer" class="results-container" style="display: none;">
+                <div class="result-card" style="margin-bottom: 2rem;">
+                    <h3>Prediction Results</h3>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+
+            <div id="modelStats" class="model-stats">
+                <h3 style="margin-bottom: 2rem; font-style: italic; opacity: 0.9;">📊 Model Performance Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Predictions</div>
+                        <div id="totalPredictions" class="stat-value">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Accept Rate</div>
+                        <div id="acceptRate" class="stat-value">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Reject Rate</div>
+                        <div id="rejectRate" class="stat-value">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <p
+                style="margin-top: 3rem; margin-bottom: 0; text-align: center; color: var(--text-secondary); max-width: 800px; margin-left: auto; margin-right: auto;">
+                This project applies tabular machine learning models to predict ICLR paper acceptance decisions.
+                Unlike LLM-based approaches, we focus on structured feature engineering from review scores, ratings, and
+                metadata.
+            </p>
+
+        </div>
+    </section>
+
+    <section id="historical-performance" class="section">
+        <div class="container">
+            <h2>Benchmark Results (2025)</h2>
+            <p class="section-description">Historical accuracy of our models on the ICLR 2025 dataset.</p>
+
+            <div class="bento-grid-placeholder">
+                <div class="bento-card">
+                    <h3>Overall Accuracy</h3>
+                    <div class="bento-value">87.5%</div>
+                    <div class="bento-subtitle">Binary Classification</div>
+                </div>
+                <div class="bento-card">
+                    <h3>F1 Score</h3>
+                    <div class="bento-value">0.64</div>
+                    <div class="bento-subtitle">Macro Average</div>
+                </div>
+                <div class="bento-card wide">
+                    <h3>Model Leaderboard</h3>
+                    <p style="margin-top: 10px;">CatBoost consistently outperforms baseline Logistic Regression on
+                        tabular review data, achieving higher precision in distinguishing borderline Spotlight/Poster
+                        decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section section-alt">
+        <div class="container">
+            <h2>About This Project</h2>
+            <div class="about-content">
+                <p style="margin-top: 3rem; margin-bottom: 3rem; text-align: center; color: var(--text-secondary);
+                    max-width: 800px; margin-left: auto; margin-right: auto;">
+
+                    This project applies tabular machine learning models to predict ICLR paper acceptance decisions.
+                    Unlike LLM-based approaches, we focus on structured feature engineering from review scores, ratings,
+                    and metadata.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Tabular Data Approach</h3>
+                        <p>Leverages structured features from review scores, ratings, and paper metadata without relying
+                            on text content.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Multiple Models</h3>
+                        <p>Ensemble of CatBoost, TabPFN, Logistic Regression, and Decision Trees for robust predictions.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Feature Engineering</h3>
+                        <p>Advanced feature engineering including multi-value column expansion, summary statistics, and
+                            year-based deltas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="section">
+        <div class="container">
+            <h2>Experimental Results</h2>
+            <p class="section-description">Performance metrics for our tabular ML models on ICLR acceptance prediction.
+            </p>
+
+            <div class="model-comparison">
+                <h3>Model Comparison</h3>
+                <div class="model-tabs">
+                    <button class="model-tab active" data-model="catboost">CatBoost</button>
+                    <button class="model-tab" data-model="tabpfn">TabPFN</button>
+                    <button class="model-tab" data-model="logreg">Logistic Regression</button>
+                    <button class="model-tab" data-model="dtree">Decision Tree</button>
+                </div>
+
+                <div id="modelMetrics" class="metrics-container">
+                    <div class="metrics-placeholder">Select a model to view metrics</div>
+                </div>
+            </div>
+
+            <div class="prediction-distribution">
+                <h3 style="margin-bottom: 2rem; margin-top: 2rem;">Prediction Distribution</h3>
+                <div id="distributionChart" class="chart-container">
+                    <canvas id="distributionCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="download" class="section">
+        <div class="container" style="text-align: center;">
+            <h2>Download Predictions</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Download the complete prediction dataset with
+                all model outputs.</p>
+            <a href="Archiv/iclr/" target="_blank" class="btn btn-primary">📂 Open Results Folder</a>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+
+            <p>&copy; 2026 ICLR Paper Predictor. Built with tabular machine learning.</p>
+            <p style="margin-top: 8px; opacity: 0.8;">Authors: <a
+                    href="https://www.linkedin.com/in/sascha-marton-phd-a19630185/" target="_blank"
+                    style="color: inherit; text-decoration: underline;">Sascha Marton</a>, <a
+                    href="https://www.linkedin.com/in/patrick-knab-4396261b4/" target="_blank"
+                    style="color: inherit; text-decoration: underline;">Patrick Knab</a>, and <a
+                    href="https://bartelt-lab.github.io/" target="_blank"
+                    style="color: inherit; text-decoration: underline;">Bartelt Lab</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "model": "Decision Tree",
+  "eval_year": 2026,
+  "split": "validation",
+  "accuracy": 0.8215876342677495,
+  "macro_f1": 0.670953607066402,
+  "weighted_f1": 0.8212591361783674,
+  "f1_oral": 0.5862068965517241,
+  "accuracy_oral": 0.9874246790673303,
+  "f1_poster": 0.6774356385663807,
+  "accuracy_poster": 0.8325910400838354,
+  "f1_reject": 0.8975238095238095,
+  "accuracy_reject": 0.8590516112129944,
+  "f1_spotlight": 0.5226480836236934,
+  "accuracy_spotlight": 0.9641079381713388
+}

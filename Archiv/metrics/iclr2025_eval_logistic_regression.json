@@ -1,0 +1,16 @@
+{
+  "model": "Logistic Regression",
+  "eval_year": 2025,
+  "split": "eval",
+  "accuracy": 0.872398732551169,
+  "macro_f1": 0.630964959487667,
+  "weighted_f1": 0.8693363114791265,
+  "f1_oral": 0.264,
+  "accuracy_oral": 0.9842425280465873,
+  "f1_poster": 0.7918367346938775,
+  "accuracy_poster": 0.8864434358139933,
+  "f1_reject": 0.9316153362664991,
+  "accuracy_reject": 0.9068253832319945,
+  "f1_spotlight": 0.5364077669902912,
+  "accuracy_spotlight": 0.9672861180097628
+}

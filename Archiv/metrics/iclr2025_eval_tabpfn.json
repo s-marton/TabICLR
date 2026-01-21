@@ -1,0 +1,16 @@
+{
+  "model": "TabPFN",
+  "eval_year": 2025,
+  "split": "eval",
+  "accuracy": 0.8790785304444635,
+  "macro_f1": 0.6197176071282645,
+  "weighted_f1": 0.8734225538374075,
+  "f1_oral": 0.1940928270042194,
+  "accuracy_oral": 0.9836430590048814,
+  "f1_poster": 0.802660753880266,
+  "accuracy_poster": 0.8932945105763467,
+  "f1_reject": 0.9347203189236327,
+  "accuracy_reject": 0.9102509206131711,
+  "f1_spotlight": 0.5473965287049399,
+  "accuracy_spotlight": 0.9709685706945277
+}
