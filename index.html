@@ -29,9 +29,6 @@
     <header class="hero">
         <div class="container">
             <h1>ICLR 2026 Acceptance Prediction: Benchmarking with Tabular Machine Learning</h1>
-            <p style="margin-top: 1rem; margin-bottom: 1rem; font-weight: 500; color: var(--accent-color, #4a90e2);">
-                <strong>Important:</strong> You can find your paper ID in the OpenReview URL
-            </p>
             <p class="subtitle" style="font-style: italic; opacity: 0.9;"> Please note: These are just predictions based
                 on
                 data. Don't take them too seriously! We wish everyone
@@ -56,9 +53,10 @@
                         <option value="tabpfn">TabPFN</option>
                         <option value="logreg">Logistic Reg.</option>
                         <option value="dtree">Decision Tree</option>
+                        <option value="baseline">Baseline Threshold</option>
                     </select>
                     <input type="text" id="searchInput"
-                        placeholder="Enter OpenReview submission ID (e.g., 00F7BfXLYJ)" />
+                        placeholder="Enter OpenReview submission ID (e.g., 123456)" />
                     <button id="searchBtn" class="search-btn">Search</button>
                 </div>
                 <div id="searchStatus" class="search-status">Ready to search...</div>
@@ -173,6 +171,7 @@
                     <button class="model-tab" data-model="tabpfn">TabPFN</button>
                     <button class="model-tab" data-model="logreg">Logistic Regression</button>
                     <button class="model-tab" data-model="dtree">Decision Tree</button>
+                    <button class="model-tab" data-model="baseline">Baseline Threshold</button>
                 </div>
 
                 <div id="modelMetrics" class="metrics-container">

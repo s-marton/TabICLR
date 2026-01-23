@@ -2,14 +2,25 @@ const modelFiles = {
     'catboost': 'iclr2026_catboost_predictions.csv',
     'tabpfn': 'iclr2026_tabpfn_predictions.csv',
     'dtree': 'iclr2026_decision_tree_predictions.csv',
-    'logreg': 'iclr2026_logistic_regression_predictions.csv'
+    'logreg': 'iclr2026_logistic_regression_predictions.csv',
+    'baseline': 'iclr2026_baseline_threshold_predictions.csv'
 };
 
 const metricsFiles = {
-    'catboost': 'iclr2026_validation_catboost.json',
-    'tabpfn': 'iclr2026_validation_tabpfn.json',
-    'dtree': 'iclr2026_validation_decision_tree.json',
-    'logreg': 'iclr2026_validation_logistic_regression.json'
+    'catboost': 'iclr2026_eval_catboost.json',
+    'tabpfn': 'iclr2026_eval_tabpfn.json',
+    'dtree': 'iclr2026_eval_decision_tree.json',
+    'logreg': 'iclr2026_eval_logistic_regression.json',
+    'baseline': 'iclr2026_eval_baseline_threshold.json'
+};
+
+// Fallback to 2025 metrics if 2026 not available
+const metricsFiles2025 = {
+    'catboost': 'iclr2025_eval_catboost.json',
+    'tabpfn': 'iclr2025_eval_tabpfn.json',
+    'dtree': 'iclr2025_eval_decision_tree.json',
+    'logreg': 'iclr2025_eval_logistic_regression.json',
+    'baseline': 'iclr2025_eval_baseline_threshold.json'
 };
 
 // Global data storage
@@ -37,9 +48,10 @@ async function loadPredictions() {
 
 
     try {
-        const [predResponse, metricsResponse] = await Promise.all([
+        const [predResponse, metricsResponse, metricsResponse2025] = await Promise.all([
             fetch(`Archiv/iclr/${filename}`),
-            fetch(`Archiv/metrics/${metricsFiles[currentModel]}`)
+            fetch(`Archiv/metrics/${metricsFiles[currentModel]}`),
+            fetch(`Archiv/metrics/${metricsFiles2025[currentModel]}`)
         ]);
 
         if (!predResponse.ok) {
@@ -47,10 +59,22 @@ async function loadPredictions() {
         }
 
         const csvText = await predResponse.text();
-        predictionsData = parseCSV(csvText);
+        const rawData = parseCSV(csvText);
+        
+        // Normalize data (handle 2026 submission_number vs id)
+        predictionsData = rawData.map(row => {
+            if (row.submission_number && !row.id) {
+                row.id = row.submission_number; // Map submission_number to id for consistency
+            }
+            return row;
+        });
 
+        // Try 2026 metrics first, fallback to 2025 if not available
         if (metricsResponse.ok) {
             currentMetrics = await metricsResponse.json();
+        } else if (metricsResponse2025.ok) {
+            console.warn('2026 metrics not available, using 2025 evaluation metrics as reference');
+            currentMetrics = await metricsResponse2025.json();
         } else {
             console.warn('Metrics file not found, using default/placeholder');
             currentMetrics = null;
@@ -416,6 +440,10 @@ function displayModelMetrics(modelName) {
         'dtree': {
             name: 'Decision Tree',
             description: 'Non-parametric decision tree model',
+        },
+        'baseline': {
+            name: 'Baseline Threshold',
+            description: 'Simple threshold-based baseline model',
         }
     };
 
@@ -432,12 +460,28 @@ function displayModelMetrics(modelName) {
         // Format the metrics from the JSON
         metricsToShow = {};
         for (const [key, value] of Object.entries(currentMetrics)) {
-            // Filter out 'model' key if redundant or format it
+            // Filter out 'model' and 'split' keys
             if (key !== 'model' && key !== 'split') {
                 // Format key (e.g., macro_f1 -> Macro F1)
                 const formattedKey = key.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                // Format value (round numbers)
-                const formattedValue = typeof value === 'number' ? value.toFixed(4) : value;
+                
+                // Format value
+                let formattedValue;
+                if (key === 'eval_year') {
+                    // Display year as integer
+                    formattedValue = typeof value === 'number' ? Math.round(value).toString() : value;
+                } else if (typeof value === 'number') {
+                    // Convert decimal values (0-1 range) to percentage format (xx.x%)
+                    // Check if value is likely a percentage (between 0 and 1)
+                    if (value >= 0 && value <= 1) {
+                        formattedValue = (value * 100).toFixed(1) + '%';
+                    } else {
+                        // For values outside 0-1 range, just format with 1 decimal
+                        formattedValue = value.toFixed(1);
+                    }
+                } else {
+                    formattedValue = value;
+                }
                 metricsToShow[formattedKey] = formattedValue;
             }
         }
