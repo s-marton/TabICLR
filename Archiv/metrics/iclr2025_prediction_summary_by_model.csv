@@ -7,10 +7,10 @@ Logistic Regression,oral,37,0.0031686220775884216
 Logistic Regression,poster,3259,0.2790956581313694
 Logistic Regression,reject,7937,0.6797122548599812
 Logistic Regression,spotlight,444,0.03802346493106106
-Decision Tree,oral,103,0.00882075875652993
-Decision Tree,poster,3103,0.2657360623447803
-Decision Tree,reject,7823,0.6699494733236276
-Decision Tree,spotlight,648,0.055493705575062086
+Decision Tree,oral,107,0.009163312494647597
+Decision Tree,poster,3102,0.2656504239102509
+Decision Tree,reject,7832,0.6707202192343924
+Decision Tree,spotlight,636,0.054466044360709086
 Baseline Threshold,oral,136,0.011646827096000685
 Baseline Threshold,poster,2848,0.24389826153977906
 Baseline Threshold,reject,8114,0.694870257771688
