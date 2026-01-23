@@ -83,6 +83,7 @@ body {
 .hero,
 .section {
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    scroll-margin-top: 80px; /* Offset for fixed navbar */
 }
 
 .container {
